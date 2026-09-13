@@ -12,6 +12,8 @@ const SMARTHRT_REQUIRED_KEYS = [
   'label_time_to', 'number_setpoint', 'time_stop', 'time_target',
   'switch_enabled', 'sensor_rcth', 'sensor_uwind', 'number_rcth_lw',
   'number_rcth_hw', 'number_relax', 'switch_adaptive',
+  'label_stop', 'label_relay', 'label_target', 'dialog_stop', 'dialog_target',
+  'dialog_title', 'btn_cancel',
 ];
 
 // Runtime fallback if translation files are unavailable.
@@ -31,6 +33,13 @@ const SMARTHRT_EN_FALLBACK = {
   number_rcth_hw: 'rcth_high_wind',
   number_relax: 'relaxation_factor',
   switch_adaptive: 'adaptive_mode',
+  label_stop: 'Stop',
+  label_relay: 'Start',
+  label_target: 'Target',
+  dialog_stop: 'Stop time',
+  dialog_target: 'Target time',
+  dialog_title: 'Edit time',
+  btn_cancel: 'Cancel',
 };
 
 let SMARTHRT_KEYS = { ...SMARTHRT_EN_FALLBACK, mode_values: {} };
@@ -407,25 +416,25 @@ class SmartHRTCard extends HTMLElement {
         </div>
         <div class="time-row">
           <div class="time-block" id="block-stop">
-            <div class="time-block-label"><span class="emoji">⏹</span>Arrêt</div>
+            <div class="time-block-label"><span class="emoji">⏹</span>${SMARTHRT_KEYS.label_stop}</div>
             <div class="time-block-value" id="val-stop">—</div>
           </div>
           <div class="time-block readonly">
-            <div class="time-block-label"><span class="emoji">⏰</span>Relance</div>
+            <div class="time-block-label"><span class="emoji">⏰</span>${SMARTHRT_KEYS.label_relay}</div>
             <div class="time-block-value" id="val-relay">—</div>
           </div>
           <div class="time-block" id="block-target">
-            <div class="time-block-label"><span class="emoji">🎯</span>Cible</div>
+            <div class="time-block-label"><span class="emoji">🎯</span>${SMARTHRT_KEYS.label_target}</div>
             <div class="time-block-value" id="val-target">—</div>
           </div>
         </div>
       </div></ha-card>
       <div class="dialog-overlay" id="dialog-overlay">
         <div class="dialog-box">
-          <h3 id="dialog-title">Modifier l'heure</h3>
+          <h3 id="dialog-title">${SMARTHRT_KEYS.dialog_title}</h3>
           <input type="time" id="dialog-input">
           <div class="dialog-btns">
-            <button class="btn-cancel" id="dialog-cancel">Annuler</button>
+            <button class="btn-cancel" id="dialog-cancel">${SMARTHRT_KEYS.btn_cancel}</button>
             <button class="btn-ok" id="dialog-ok">OK</button>
           </div>
         </div>
@@ -678,9 +687,9 @@ class SmartHRTCard extends HTMLElement {
     r.getElementById('btn-plus').addEventListener('click',  () => this._adjustTemp( 0.5));
     r.getElementById('btn-minus').addEventListener('click', () => this._adjustTemp(-0.5));
     r.getElementById('block-stop').addEventListener('click', () =>
-      this._openDialog("Heure d'arrêt", 'time_stop', this._el.valStop.textContent));
+      this._openDialog(SMARTHRT_KEYS.dialog_stop, 'time_stop', this._el.valStop.textContent));
     r.getElementById('block-target').addEventListener('click', () =>
-      this._openDialog('Heure cible', 'time_target', this._el.valTarget.textContent));
+      this._openDialog(SMARTHRT_KEYS.dialog_target, 'time_target', this._el.valTarget.textContent));
     r.getElementById('dialog-cancel').addEventListener('click', () => this._closeDialog());
     r.getElementById('dialog-ok').addEventListener('click',     () => this._confirmDialog());
     r.getElementById('btn-expert').addEventListener('click',    () => this._toggleExpert());

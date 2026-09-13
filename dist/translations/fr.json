@@ -15,7 +15,14 @@
     "number_rcth_lw": "rcth_vent_faible",
     "number_rcth_hw": "rcth_vent_fort",
     "number_relax": "facteur_de_relaxation",
-    "switch_adaptive": "mode_adaptatif"
+    "switch_adaptive": "mode_adaptatif",
+    "label_stop": "Arrêt",
+    "label_relay": "Relance",
+    "label_target": "Cible",
+    "dialog_stop": "Heure d'arrêt",
+    "dialog_target": "Heure cible",
+    "dialog_title": "Modifier l'heure",
+    "btn_cancel": "Annuler"
   },
   "mode_values": {
     "initializing": "Initialisation",
