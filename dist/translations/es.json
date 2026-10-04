@@ -22,7 +22,13 @@
     "dialog_stop": "Hora de parada",
     "dialog_target": "Hora objetivo",
     "dialog_title": "Editar hora",
-    "btn_cancel": "Cancelar"
+    "btn_cancel": "Cancelar",
+    "label_loading": "Cargando…",
+    "label_no_history": "Sin datos históricos",
+    "label_current": "actual",
+    "title_details": "Detalles RCth",
+    "title_back": "Volver",
+    "title_adaptive": "Modo adaptativo on/off"
   },
   "mode_values": {
     "initializing": "Inicializando",

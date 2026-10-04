@@ -40,6 +40,12 @@ const SMARTHRT_EN_FALLBACK = {
   dialog_target: 'Target time',
   dialog_title: 'Edit time',
   btn_cancel: 'Cancel',
+  label_loading: 'Loading…',
+  label_no_history: 'No historical data',
+  label_current: 'current',
+  title_details: 'RCth details',
+  title_back: 'Back',
+  title_adaptive: 'Adaptive mode on/off',
 };
 
 let SMARTHRT_KEYS = { ...SMARTHRT_EN_FALLBACK, mode_values: {} };
@@ -141,6 +147,7 @@ class SmartHRTCard extends HTMLElement {
                  : key.startsWith('switch') ? 'switch' : 'time';
     return `${domain}.${this._config.prefix}_${suffix}`;
   }
+  _tr(key) { return SMARTHRT_KEYS[key] ?? SMARTHRT_EN_FALLBACK[key]; }
   _estate(key) { return this._hass?.states[this._eid(key)]?.state ?? null; }
   _eattr(key, attr) { return this._hass?.states[this._eid(key)]?.attributes?.[attr] ?? null; }
 
@@ -545,9 +552,9 @@ class SmartHRTCard extends HTMLElement {
 
     // Status
     const statusText = this._expertLoading
-      ? `<text x="${W/2}" y="${H/2}" text-anchor="middle" font-size="11" fill="${textColor}" opacity="0.6">Chargement…</text>`
+      ? `<text x="${W/2}" y="${H/2}" text-anchor="middle" font-size="11" fill="${textColor}" opacity="0.6">${this._tr('label_loading')}</text>`
       : (pairs.length === 0 && !this._expertLoading
-        ? `<text x="${W/2}" y="${(H/2+10).toFixed(1)}" text-anchor="middle" font-size="10" fill="${textColor}" opacity="0.5">Pas de données historiques</text>`
+        ? `<text x="${W/2}" y="${(H/2+10).toFixed(1)}" text-anchor="middle" font-size="10" fill="${textColor}" opacity="0.5">${this._tr('label_no_history')}</text>`
         : '');
 
     const chart = `
@@ -565,7 +572,7 @@ class SmartHRTCard extends HTMLElement {
     // Legend
     const nPts = pairs.length;
     const legendText = nPts > 0
-      ? `<span style="font-size:0.7em;opacity:0.6">${nPts} point${nPts>1?'s':''} / 7j</span>`
+      ? `<span style="font-size:0.7em;opacity:0.6">${nPts} point${nPts>1?'s':''} / 7d</span>`
       : '';
 
     // Read adaptive switch state
@@ -609,12 +616,12 @@ class SmartHRTCard extends HTMLElement {
           <span class="exp-title">${this._config.name} — RCth</span>
           <div class="exp-meta">
             <span class="npts">${nPts > 0 ? nPts+'pt' : ''}</span>
-            <button class="btn-detail" id="btn-detail" title="Détails RCth">📊</button>
-            <button class="btn-expert" id="btn-expert" title="Retour">⚙</button>
+            <button class="btn-detail" id="btn-detail" title="${this._tr('title_details')}">📊</button>
+            <button class="btn-expert" id="btn-expert" title="${this._tr('title_back')}">⚙</button>
           </div>
         </div>
         <div class="relax-row">
-          <button class="relax-brain" id="btn-adaptive" title="Mode adaptatif on/off">${adaptiveOn ? '🧠' : '🧠'}</button>
+          <button class="relax-brain" id="btn-adaptive" title="${this._tr('title_adaptive')}">${adaptiveOn ? '🧠' : '🧠'}</button>
           <input class="relax-slider" id="relax-slider" type="range" min="0" max="2" step="0.05"
             value="${isNaN(relaxVal) ? 1 : relaxVal.toFixed(2)}"
             ${relaxDisabled ? 'disabled' : ''}>
@@ -624,7 +631,7 @@ class SmartHRTCard extends HTMLElement {
         <div class="rcth-values">
           <div class="rcth-val"><strong>${rcthLW.toFixed(2)}</strong>U=10</div>
           <div class="rcth-val"><strong>${rcthHW.toFixed(2)}</strong>U=60</div>
-          ${rcthNow !== null ? `<div class="rcth-val"><strong>${rcthNow.toFixed(2)}</strong>actuel</div>` : ''}
+          ${rcthNow !== null ? `<div class="rcth-val"><strong>${rcthNow.toFixed(2)}</strong>${this._tr('label_current')}</div>` : ''}
         </div>
       </div></ha-card>`;
 

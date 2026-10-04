@@ -22,7 +22,13 @@
     "dialog_stop": "Stop time",
     "dialog_target": "Target time",
     "dialog_title": "Edit time",
-    "btn_cancel": "Cancel"
+    "btn_cancel": "Cancel",
+    "label_loading": "Loading…",
+    "label_no_history": "No historical data",
+    "label_current": "current",
+    "title_details": "RCth details",
+    "title_back": "Back",
+    "title_adaptive": "Adaptive mode on/off"
   },
   "mode_values": {
     "initializing": "Initializing",

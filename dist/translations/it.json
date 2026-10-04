@@ -22,7 +22,13 @@
     "dialog_stop": "Ora di stop",
     "dialog_target": "Ora obiettivo",
     "dialog_title": "Modifica ora",
-    "btn_cancel": "Annulla"
+    "btn_cancel": "Annulla",
+    "label_loading": "Caricamento…",
+    "label_no_history": "Nessun dato storico",
+    "label_current": "attuale",
+    "title_details": "Dettagli RCth",
+    "title_back": "Indietro",
+    "title_adaptive": "Modalità adattiva on/off"
   },
   "mode_values": {
     "initializing": "Inizializzazione",

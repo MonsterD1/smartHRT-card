@@ -22,7 +22,13 @@
     "dialog_stop": "Abschaltzeit",
     "dialog_target": "Zielzeit",
     "dialog_title": "Zeit ändern",
-    "btn_cancel": "Abbrechen"
+    "btn_cancel": "Abbrechen",
+    "label_loading": "Lädt…",
+    "label_no_history": "Keine historischen Daten",
+    "label_current": "aktuell",
+    "title_details": "RCth-Details",
+    "title_back": "Zurück",
+    "title_adaptive": "Adaptiver Modus ein/aus"
   },
   "mode_values": {
     "initializing": "Initialisierung",

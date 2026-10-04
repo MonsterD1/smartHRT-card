@@ -22,7 +22,13 @@
     "dialog_stop": "Heure d'arrêt",
     "dialog_target": "Heure cible",
     "dialog_title": "Modifier l'heure",
-    "btn_cancel": "Annuler"
+    "btn_cancel": "Annuler",
+    "label_loading": "Chargement…",
+    "label_no_history": "Pas de données historiques",
+    "label_current": "actuel",
+    "title_details": "Détails RCth",
+    "title_back": "Retour",
+    "title_adaptive": "Mode adaptatif on/off"
   },
   "mode_values": {
     "initializing": "Initialisation",
